@@ -29,3 +29,15 @@ jobs:
     - name: do report
       run: |
         python ./dayReport.py -u ${{ secrets.CARD_NUM }} -p ${{ secrets.PASSWORD }}
+    - name: send email
+      uses: dawidd6/action-send-mail@master
+      with:
+        server_address: smtp.163.com
+        server_port: 465
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: SEU daily report
+        body: file://email.txt
+        to: 1764051293@qq.com
+        from: GitHub Actions
+        content_type: text/plain
