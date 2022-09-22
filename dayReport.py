@@ -26,7 +26,7 @@ def load_params(ss, mode):
         "CREATED_AT": "%Y-%m-%d %H:%M:%S",
         "NEED_CHECKIN_DATE": "%Y-%m-%d"
     }
-    params["DZ_JSDTCJTW"] = 36 + random.randint(1, 10) / 10
+    params["DZ_JSDTCJTW"] = 36 + random.randint(1, 5) / 10
     if mode != '':
         try:
             local = configs['dailyReport'][mode]
@@ -69,16 +69,23 @@ def doReport(session, mode=''):
     try:
         if json.loads(res.text)['datas']['T_REPORT_EPIDEMIC_CHECKIN_SAVE'] == 1:
             print("填报成功！")
+            return_message="填报成功！"
         else:
             print("填报失败！")
+            return_message="填报失败！"
     except Exception:
         soup = BeautifulSoup(res.text, "html.parser")
         tag = soup.select('.underscore.bh-mt-16')
         if len(tag) > 1:
             print(tag[0].text.replace('\n', ''))
+            return_message=tag[0].text.replace('\n', '')
         else:
             print(res.text)
+            return_message=res.text
         print("填报失败！")
+        return_message=return_message+"\n填报失败！"
+    with open("email.txt", "w", encoding="utf-8") as email:
+        email.writelines(return_message)
 
 
 # 获取昨日填报信息
