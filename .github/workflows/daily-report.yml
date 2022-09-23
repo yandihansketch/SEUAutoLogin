@@ -39,7 +39,7 @@ jobs:
         server_port: 465
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
-        subject: SEU每日健康申报 ${{ steps.date.outputs.date }}
+        subject: SEU每日健康申报 ${{ steps.date.outputs.today }}
         body: file://email.txt
         to: 1764051293@qq.com
         from: GitHub Actions
