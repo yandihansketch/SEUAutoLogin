@@ -78,12 +78,11 @@ def doReport(session, mode=''):
         tag = soup.select('.underscore.bh-mt-16')
         if len(tag) > 1:
             print(tag[0].text.replace('\n', ''))
-            return_message=tag[0].text.replace('\n', '')
+            return_message="填报失败！\n"+tag[0].text.replace('\n', '')
         else:
             print(res.text)
-            return_message=res.text
+            return_message="填报失败！\n"+res.text
         print("填报失败！")
-        return_message=return_message+"\n填报失败！"
     with open("email.txt", "w", encoding="utf-8") as email:
         email.writelines(return_message)
 
