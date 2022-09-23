@@ -30,7 +30,7 @@ jobs:
       run: |
         python ./dayReport.py -u ${{ secrets.CARD_NUM }} -p ${{ secrets.PASSWORD }}
     - name: get current date
-      id: data
+      id: date
       run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
     - name: send email
       uses: dawidd6/action-send-mail@master
