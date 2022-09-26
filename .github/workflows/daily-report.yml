@@ -41,6 +41,6 @@ jobs:
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: SEU每日健康申报 ${{ steps.date.outputs.today }}
         body: file://email.txt
-        to: 1764051293@qq.com
+        to: 1146282509@qq.com
         from: GitHub Actions
         content_type: text/plain
